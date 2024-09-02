@@ -31,7 +31,7 @@ export default function CreateWorkspaceModal() {
     e.preventDefault();
 
     mutate({
-        name: "Workspace 1",
+        name: name,
     }, {
         onSuccess(id){
           toast.success("Workspace created successfully");
