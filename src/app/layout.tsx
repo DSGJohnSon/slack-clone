@@ -5,12 +5,14 @@ import { ConvexClientProvider } from "@/components/convexClientProvider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { Modals } from "@/components/modals";
 import { Toaster } from "@/components/ui/sonner";
+import JotaiProvider from "@/components/JotaiProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Slack Clone - Using NextJS, Convex, and TailwindCSS",
-  description: "An exercice to build a Slack Clone using NextJS, Convex, and TailwindCSS by 'Code with Antonio'",
+  description:
+    "An exercice to build a Slack Clone using NextJS, Convex, and TailwindCSS by 'Code with Antonio'",
 };
 
 export default function RootLayout({
@@ -23,9 +25,11 @@ export default function RootLayout({
       <html lang="en">
         <body className={inter.className}>
           <ConvexClientProvider>
-            <Toaster />
-            <Modals />
-            {children}
+            <JotaiProvider>
+              <Toaster />
+              <Modals />
+              {children}
+            </JotaiProvider>
           </ConvexClientProvider>
         </body>
       </html>
