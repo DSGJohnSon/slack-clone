@@ -10,8 +10,10 @@ import {
 import { useCurrentUser } from "../api/useCurrentUser";
 import { Loader, LogOut } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
+import { useRouter } from "next/navigation";
 
 export default function UserButton() {
+  const router = useRouter();
   const { signOut } = useAuthActions();
   const { data, isLoading } = useCurrentUser();
 
@@ -40,9 +42,12 @@ export default function UserButton() {
       <DropdownMenuContent align="center" side="right" className="w-60">
         <DropdownMenuItem
           onClick={() => {
-            signOut();
+            signOut().then(() => {
+              router.push("/");
+            });
           }}
-          className="h-10">
+          className="h-10"
+        >
           <LogOut className="size-4 mr-2" />
           Logout
         </DropdownMenuItem>
