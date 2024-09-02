@@ -6,10 +6,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useCreateWorkspaceModal } from "../store/use-create-workspace-modal";
+import { useCreateWorkspaceModal } from "../store/useCreateWorkspaceModal";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useCreateWorkspace } from "../api/use-create-workspace";
+import { useCreateWorkspace } from "../api/useCreateWorkspace";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
