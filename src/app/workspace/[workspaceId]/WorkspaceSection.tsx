@@ -9,7 +9,7 @@ interface WorkspaceSectionProps {
   label: string;
   hint: string;
   children: React.ReactNode;
-  onNew: () => void;
+  onNew?: () => void;
 }
 
 export default function WorkspaceSection({
@@ -37,7 +37,7 @@ export default function WorkspaceSection({
           className="group px-1.5 text-sm text-[#f9edffcc] h-[28px] justify-start overflow-hidden items-center">
           <span className="truncate">{label}</span>
         </Button>
-        {onNew && (
+        {onNew !== undefined && (
           <Hint label={hint} side="top" align="center">
             <Button
               onClick={onNew}
