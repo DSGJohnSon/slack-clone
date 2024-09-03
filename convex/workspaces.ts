@@ -38,6 +38,12 @@ export const create = mutation({
       role: "admin",
     });
 
+    //Add a general channel to the workspace
+    await ctx.db.insert("channels", {
+      name: "general",
+      workspaceId,
+    });
+
     return workspaceId;
   },
 });
