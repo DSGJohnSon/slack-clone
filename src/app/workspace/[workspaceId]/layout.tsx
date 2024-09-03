@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import Toolbar from "./Toolbar";
-import Sidebar from "./Sidebar";
+import Toolbar from "./(components)/Toolbar";
+import Sidebar from "./(components)/Sidebar";
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import WorkspaceSidebar from "./WorkspaceSidebar";
+import WorkspaceSidebar from "./(components)/WorkspaceSidebar";
 
 interface WorkspaceIdLayoutProps {
   children: React.ReactNode;
@@ -24,13 +24,11 @@ export default function WorkspaceIdLayout({
         <Sidebar />
         <ResizablePanelGroup
           direction="horizontal"
-          autoSaveId={"dev-workspace-layout"}
-        >
+          autoSaveId={"dev-workspace-layout"}>
           <ResizablePanel
             defaultSize={20}
             minSize={11}
-            className="bg-[#5e2c5f]"
-          >
+            className="bg-[#5e2c5f]">
             <WorkspaceSidebar />
           </ResizablePanel>
           <ResizableHandle withHandle />
