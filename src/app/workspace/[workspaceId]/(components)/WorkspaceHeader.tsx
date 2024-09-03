@@ -8,11 +8,12 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
-import { Doc } from "../../../../convex/_generated/dataModel";
+import { Doc } from "../../../../../convex/_generated/dataModel";
 import { ChevronDown, ListFilter, SquarePen } from "lucide-react";
 import Hint from "@/components/Hint";
 import PreferencesModal from "./PreferencesModal";
 import { useState } from "react";
+import InviteModal from "./InviteModal";
 
 interface WorkspaceHeaderProps {
   workspace: Doc<"workspaces">;
@@ -23,20 +24,29 @@ export default function WorkspaceHeader({
   workspace,
   isAdmin,
 }: WorkspaceHeaderProps) {
-
   const [preferencesOpen, setPreferencesOpen] = useState(false);
+  const [inviteOpen, setInviteOpen] = useState(false);
 
   return (
     <>
-      <PreferencesModal open={preferencesOpen} setOpen={setPreferencesOpen} initialValue={workspace.name}/>
+      <InviteModal
+        open={inviteOpen}
+        setOpen={setInviteOpen}
+        name={workspace.name}
+        joinCode={workspace.joinCode}
+      />
+      <PreferencesModal
+        open={preferencesOpen}
+        setOpen={setPreferencesOpen}
+        initialValue={workspace.name}
+      />
       <div className="flex items-center justify-between px-4 h-[49px] gap-0.5">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button
               variant="transparent"
               size="sm"
-              className="font-semibold text-lg w-auto p-1.5 overflow-hidden"
-            >
+              className="font-semibold text-lg w-auto p-1.5 overflow-hidden">
               <span className="truncate">{workspace.name}</span>
               <ChevronDown className="size-4 ml-1 shrink-0" />
             </Button>
@@ -58,8 +68,9 @@ export default function WorkspaceHeader({
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   className="cursor-pointer py-2"
-                  onClick={() => {}}
-                >
+                  onClick={() => {
+                    setInviteOpen(true);
+                  }}>
                   Invite people to {workspace.name}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
@@ -67,8 +78,7 @@ export default function WorkspaceHeader({
                   className="cursor-pointer py-2"
                   onClick={() => {
                     setPreferencesOpen(true);
-                  }}
-                >
+                  }}>
                   Preferences
                 </DropdownMenuItem>
               </>
